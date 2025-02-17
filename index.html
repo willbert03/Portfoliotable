@@ -1,464 +1,597 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- add hyperlinks, upload to github / find way to hide pdfs? = password?? -->
+  <!-- add hyperlinks, upload to github / find way to hide pdfs? = password?? -->
 
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Graphic Design Portfolios | WL</title>
-    <link rel="shortcut icon" type="image/x-icon" href="svg/logo.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <meta property="og:site_name" content="Graphic Design Portfolios | WL" />
     <meta name="author" content="William Leggett" />
     <meta name="theme-color" content="#121212" />
+
+    <link href="dflip/css/dflip.min.css" rel="stylesheet" type="text/css" />
+    <link href="dflip/css/themify-icons.min.css" rel="stylesheet" type="text/css"/>
+    <script src="dflip/js/libs/jquery.min.js" type="text/javascript"></script>
+    <script src="dflip/js/dflip.min.js" type="text/javascript"></script>
     <style>
-        body {
-            margin: 0;
-            font-family: Montserrat, sans-serif;
-            background-color: #121212;
-            color: #eee;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            min-height: 100vh;
-            padding: 20px;
-        }
 
-        .container {
-            text-align: center;
-            margin: 0;
-        }
+      :root {
+        --accent: #6868AC;
+        --text: #eee;
+        --subtext: #bbb;
+        --grey1: #121212;
+        --grey2: #222;
+        --grey3: #444;
+        --grey4: #666;
+      }
 
-        .island {
-            background-color: #222222;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 0 auto;
-        }
+      body {
+          margin: 0;
+          font-family: Montserrat, sans-serif;
+          background-color: var(--grey1);
+          color: var(--text);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          min-height: 100vh;
+          padding: 20px;
+      }
 
-        h1 {
-            margin: 0 0 20px 0;
-            text-align: center;
-        }
+      .container {
+          text-align: center;
+          margin: 0;
+      }
 
-        p {
-            font-size: 0.8rem;
-            color: #bbbbbb;
-            margin-top: 10px;
-        }
+      .island {
+          background-color: var(--grey2);
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          margin: 0 auto;
+      }
 
-        table {
-            border-collapse: collapse;
-        }
+      h1 {
+          margin: 0 0 20px 0;
+          text-align: center;
+      }
 
-        th,
-        td {
-            padding: 12px;
-            border: 1px solid #444;
-            word-wrap: break-word;
-        }
+      p {
+          font-size: 0.8rem;
+          color: var(--subtext);
+          margin-top: 10px;
+      }
 
-        th {
-            background-color: #444;
-            text-align: center;
-        }
+      table {
+          border-collapse: collapse;
+      }
 
-        td {
-            text-align: left;
-        }
+      th,
+      td {
+          padding: 12px;
+          border: 1px solid var(--grey3);
+          word-wrap: break-word;
+      }
 
-        a:link,
-        a:visited {
-            color: #eee;
-            text-decoration: none;
-        }
+      th {
+          background-color: var(--grey3);
+          text-align: center;
+      }
 
-        .desktop {
-            display: block;
-        }
+      td {
+          text-align: left;
+      }
 
-        .mobile {
-            display: none;
-        }
+      a:link,
+      a:visited {
+          color: var(--text);
+          text-decoration: none;
+      }
 
-        .button {
-            display: inline-block;
-            background-color: #444;
-            color: #eee;
-            margin-top: 15px;
-            padding: 5px 10px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background-color 0.3s, fill 0.3s ease;
-        }
+      .desktop {
+          display: block;
+      }
 
-        .button:hover {
-            background-color: #666;
-            color: #eee;
-        }
+      .mobile {
+          display: none;
+      }
 
+      .button {
+          display: inline-block;
+          background-color: var(--grey3);
+          color: var(--text);
+          margin-top: 15px;
+          padding: 5px 10px;
+          border-radius: 20px;
+          text-decoration: none;
+          font-size: 0.9rem;
+          cursor: pointer;
+          transition: background-color 0.3s, fill 0.3s ease;
+      }
 
-        #socials {
-            opacity: 0;
-            visibility: hidden;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
+      .button:hover {
+          background-color: var(--grey4);
+          color: var(--text);
+      }
 
-        #socials:target {
-            opacity: 1;
-            visibility: visible;
-        }
+      .df-container>.df-ui-next, .df-container>.df-ui-prev, .df-lightbox-close {
+      color: var(--subtext);
+      opacity: 1;
+      }
+      .df-container>.df-ui-next:hover, .df-container>.df-ui-prev:hover, .df-lightbox-close:hover {
+        color: var(--text);
+        opacity: 1;}
 
-        .socials {
-            margin: 40vw;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, auto);
-            gap: 10px;
-            justify-items: center;
-            align-items: center;
-        }
+      #socials {
+          opacity: 0;
+          visibility: hidden;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.9);
+          z-index: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
 
-        .socials svg {
-            width: 10vh;
-            height: 10vh;
-            transition: transform 0.3s, fill 0.3s ease;
-        }
+      #socials:target {
+          opacity: 1;
+          visibility: visible;
+      }
 
-        #socials .button {
-            background-color: #222;
-            grid-column: span 3;
-            margin: 0px;
-            text-align: center;
-        }
+      .socials {
+          margin: 40vw;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(2, auto);
+          gap: 10px;
+          justify-items: center;
+          align-items: center;
+      }
 
-        #socials .button:hover {
-            background-color: #444;
-            color: #eee;
-        }
+      .socials svg {
+          width: 10vh;
+          height: 10vh;
+          transition: transform 0.3s, fill 0.3s ease;
+      }
 
-        .socials svg .bgrd {
-            fill: #222;
-            transition: fill 0.3s ease;
-        }
+      #socials .button {
+          background-color: var(--grey2);
+          grid-column: span 3;
+          margin: 0px;
+          text-align: center;
+      }
 
-        .socials svg .icon {
-            fill: #eee;
-        }
+      #socials .button:hover {
+          background-color: var(--grey3);
+          color: var(--text);
+      }
 
-        .socials svg:hover {
-            transform: scale(1.1);
-        }
+      .socials svg .bgrd {
+          fill: var(--grey2);
+          transition: fill 0.3s ease;
+      }
 
-        .socials svg:hover .bgrd {
-            fill: #444;
-        }
+      .socials svg .icon {
+          fill: var(--text);
+      }
 
-        .github svg:hover .bgrd {
-            fill: #161B22;
-        }
+      .socials svg:hover {
+          transform: scale(1.1);
+      }
 
-        .linkedin svg:hover .bgrd {
-            fill: #0A66C2;
-        }
+      .socials svg:hover .bgrd {
+          fill: var(--grey3);
+      }
 
-        .instagram svg:hover .bgrd {
-            fill: #E1306C;
-        }
+      .github svg:hover .bgrd {
+          fill: #161B22;
+      }
 
-        .spotify svg:hover .bgrd {
-            fill: #1ED760;
-        }
+      .linkedin svg:hover .bgrd {
+          fill: #0A66C2;
+      }
 
-        .pinterest svg:hover .bgrd {
-            fill: #E60023;
-        }
+      .instagram svg:hover .bgrd {
+          fill: #E1306C;
+      }
 
-        .mail svg:hover .bgrd {
-            fill: #ff00ff;
-        }
+      .spotify svg:hover .bgrd {
+          fill: #1ED760;
+      }
 
-        #particles-js {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
+      .pinterest svg:hover .bgrd {
+          fill: #E60023;
+      }
 
-        @media (max-width: 600px) {
-            body {
-                background-color: #222;
-            }
+      .mail svg:hover .bgrd {
+          fill: #ff00ff;
+      }
 
-            .desktop {
-                display: none;
-            }
+      #particles-js {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+      }
 
-            .mobile {
-                display: block;
-            }
+      @media (max-width: 600px) {
+          body {
+              background-color: var(--grey2);
+          }
 
-            .container {
-                margin: 0px;
-                padding: 0px;
-            }
+          .desktop {
+              display: none;
+          }
 
-            .island {
-                width: 100%;
-                background-color: transparent;
-                padding: 0px;
-                box-shadow: none;
-                border-radius: 0px;
-                border: none;
-            }
+          .mobile {
+              display: block;
+          }
 
-            .mobile thead,
-            tr,
-            th,
-            tbody,
-            td {
-                width: 600px;
-            }
+          .container {
+              margin: 0px;
+              padding: 0px;
+          }
 
-            #particles-js {
-                display: none;
-            }
+          .island {
+              width: 100%;
+              background-color: transparent;
+              padding: 0px;
+              box-shadow: none;
+              border-radius: 0px;
+              border: none;
+          }
+
+          .mobile thead,
+          tr,
+          th,
+          tbody,
+          td {
+              width: 600px;
+          }
+
+          #particles-js {
+              display: none;
+          }
     </style>
-</head>
-
-<body>
+  </head>
+  <body>
     <div id="particles-js"></div>
     <div class="container">
-        <div class="island">
-            <h1>Graphic Design Portfolios</h1>
-            <table class="desktop">
-                <thead>
-                    <tr>
-                        <th>A Level</th>
-                        <th>GCSE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="/pdfviewer.html?key=AL0">Creative Exploration</a></td>
-                        <td><a href="/pdfviewer.html?key=GC1">Animal Conservation</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="/pdfviewer.html?key=AL1">Personal Investigation</a></td>
-                        <td><a href="/pdfviewer.html?key=GC2">Illustrative Branding</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="/pdfviewer.html?key=AL2">Externally Set Assignment</a></td>
-                        <td><a href="/pdfviewer.html?key=GC3">Externally Set Assignment</a></td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="mobile">
-                <thead>
-                    <tr>
-                        <th>A Level</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="/pdfviewer.html?key=AL0">Creative Exploration</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="/pdfviewer.html?key=AL1">Personal Investigation</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="/pdfviewer.html?key=AL2">Externally Set Assignment</a></td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="mobile">
-                <thead>
-                    <tr>
-                        <th>GCSE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="/pdfviewer.html?key=GC1">Animal Conservation</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="/pdfviewer.html?key=GC2">Illustrative Branding</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="/pdfviewer.html?key=GC3">Externally Set Assignment</a></td>
-                    </tr>
-                </tbody>
-            </table>
-            <a href="#socials" class="button">© William Leggett</a>
-        </div>
+      <div class="island">
+        <h1>Graphic Design Portfolios</h1>
+        <table class="desktop">
+          <thead>
+            <tr>
+              <th>A Level</th>
+              <th>GCSE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/AL0.pdf">
+                  Creative Exploration
+                </div>
+              </td>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/GC1.pdf">
+                  Animal Conservation
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/AL1.pdf">
+                  Personal Investigation
+                </div>
+              </td>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/GC2.pdf">
+                  Illustrative Branding
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/AL2.pdf">
+                  Externally Set Assignment
+                </div>
+              </td>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/GC3.pdf">
+                  Externally Set Assignment
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="mobile">
+          <thead>
+            <tr>
+              <th>A Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/AL0.pdf">
+                  Creative Exploration
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/AL1.pdf">
+                  Personal Investigation
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/AL2.pdf">
+                  Externally Set Assignment
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="mobile">
+          <thead>
+            <tr>
+              <th>GCSE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/GC1.pdf">
+                  Animal Conservation
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/GC2.pdf">
+                  Illustrative Branding
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="_df_custom" id="portfolio" source="/pdf/GC3.pdf">
+                  Externally Set Assignment
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <a href="#socials" class="button">© William Leggett</a>
+      </div>
     </div>
     <div id="socials">
-        <div class="socials">
-            <a href="https://github.com/willbert03/" target="_blank" class="github">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-label="GitHub Profile">
-                    <rect class="bgrd" width="256" height="256" />
-                    <path class="icon"
-                        d="M128.08,33.6c-53.13,0-96.08,43.27-96.08,96.79,0,42.79,27.52,79,65.7,91.82,4.77.96,6.52-2.08,6.52-4.65,0-2.24-.16-9.94-.16-17.95-26.73,5.77-32.29-11.54-32.29-11.54-4.3-11.22-10.66-14.1-10.66-14.1-8.75-5.93.64-5.93.64-5.93,9.7.64,14.8,9.94,14.8,9.94,8.59,14.74,22.43,10.58,28,8.01.79-6.25,3.34-10.58,6.05-12.98-21.32-2.24-43.74-10.58-43.74-47.76,0-10.58,3.82-19.23,9.86-25.96-.95-2.4-4.3-12.34.96-25.64,0,0,8.11-2.56,26.4,9.94,7.83-2.12,15.91-3.2,24.02-3.21,8.11,0,16.38,1.12,24.02,3.21,18.29-12.5,26.41-9.94,26.41-9.94,5.25,13.3,1.91,23.24.95,25.64,6.2,6.73,9.86,15.38,9.86,25.96,0,37.18-22.43,45.35-43.9,47.76,3.5,3.04,6.52,8.81,6.52,17.95,0,12.98-.16,23.4-.16,26.6,0,2.56,1.75,5.61,6.52,4.65,38.18-12.82,65.7-49.04,65.7-91.83.16-53.53-42.95-96.79-95.92-96.79Z" />
-                </svg>
-            </a>
-            <a href=" https://www.linkedin.com/in/william-leggett/" target="_blank" class="linkedin">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-label="LinkedIn Profile">
-                    <rect class="bgrd" width="256" height="256" />
-                    <path class="icon"
-                        d="M209.82,32H46.19c-7.75-.09-14.1,6.12-14.19,13.87v164.26c.09,7.75,6.44,13.96,14.19,13.87h163.62c7.75.09,14.1-6.12,14.19-13.87V45.87c-.09-7.75-6.44-13.96-14.18-13.87ZM88.96,195.63h-28.48v-91.63h28.48v91.63ZM74.78,91.73c-9.13,0-16.54-7.4-16.54-16.53,0-4.56,1.85-8.7,4.85-11.69,2.99-2.99,7.13-4.84,11.69-4.84,9.13,0,16.53,7.4,16.53,16.53s-7.4,16.53-16.53,16.53ZM195.63,195.63h-28.48v-44.59c0-10.67,0-24.32-14.83-24.32s-17.06,11.57-17.06,23.52v45.33h-28.38v-91.57h27.31v12.53h.37c5.57-9.51,15.92-15.18,26.94-14.77,28.85,0,34.13,18.99,34.13,43.63v50.24Z" />
-                </svg>
-            </a>
-            <a href="https://www.instagram.com/willbert03/" target="_blank" class="instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-label="Instagram Profile">
-                    <rect class="bgrd" width="256" height="256" />
-                    <path class="icon"
-                        d="M88.24,32.67c-10.21.48-17.19,2.11-23.29,4.51-6.31,2.46-11.66,5.76-16.98,11.1-5.32,5.34-8.6,10.69-11.04,17.02-2.36,6.11-3.96,13.09-4.42,23.31-.45,10.22-.55,13.51-.5,39.58.05,26.07.17,29.34.66,39.58.49,10.21,2.11,17.19,4.51,23.29,2.46,6.31,5.76,11.66,11.1,16.98,5.34,5.32,10.69,8.59,17.03,11.04,6.11,2.36,13.09,3.97,23.31,4.42,10.22.45,13.51.55,39.57.5,26.06-.05,29.34-.17,39.58-.65s17.18-2.12,23.28-4.51c6.31-2.47,11.66-5.76,16.98-11.11,5.32-5.35,8.6-10.7,11.04-17.03,2.37-6.11,3.97-13.09,4.42-23.3.45-10.25.55-13.52.5-39.59-.05-26.07-.17-29.33-.65-39.57s-2.11-17.19-4.51-23.29c-2.47-6.31-5.76-11.65-11.1-16.98-5.34-5.33-10.7-8.6-17.02-11.04-6.11-2.36-13.09-3.97-23.31-4.42s-13.51-.55-39.58-.5c-26.07.05-29.34.16-39.58.66M89.36,206.22c-9.36-.41-14.44-1.96-17.83-3.26-4.49-1.73-7.68-3.82-11.06-7.16-3.38-3.34-5.45-6.55-7.2-11.02-1.32-3.39-2.9-8.46-3.34-17.82-.48-10.12-.58-13.15-.63-38.78-.06-25.63.04-28.66.49-38.78.4-9.35,1.96-14.44,3.26-17.83,1.73-4.49,3.81-7.68,7.16-11.05s6.55-5.45,11.03-7.2c3.38-1.32,8.46-2.89,17.82-3.34,10.12-.48,13.16-.58,38.78-.63,25.63-.06,28.67.04,38.8.49,9.35.41,14.44,1.96,17.82,3.26,4.49,1.73,7.68,3.8,11.05,7.16,3.37,3.36,5.45,6.54,7.2,11.03,1.32,3.37,2.89,8.45,3.34,17.81.48,10.12.59,13.16.64,38.78.05,25.62-.04,28.67-.49,38.78-.41,9.36-1.96,14.44-3.26,17.84-1.73,4.48-3.81,7.68-7.16,11.05-3.35,3.37-6.55,5.45-11.03,7.2-3.38,1.32-8.46,2.89-17.81,3.34-10.12.48-13.16.58-38.79.63s-28.66-.05-38.78-.49M167.62,76.69c.01,6.36,5.18,11.51,11.54,11.5,6.36-.01,11.51-5.18,11.5-11.54-.01-6.36-5.18-11.51-11.54-11.5,0,0,0,0,0,0-6.36.01-11.51,5.18-11.5,11.54M78.71,128.1c.05,27.23,22.16,49.25,49.38,49.19,27.22-.05,49.26-22.16,49.2-49.39-.05-27.23-22.17-49.25-49.39-49.2-27.22.05-49.25,22.17-49.2,49.39M96,128.06c-.03-17.67,14.26-32.03,31.94-32.06,17.67-.03,32.03,14.26,32.06,31.94.03,17.67-14.26,32.03-31.94,32.06-17.67.04-32.03-14.26-32.06-31.93h0" />
-                </svg>
-            </a>
-            <a href="https://open.spotify.com/user/m721lyjmo4bhqy922jubq2noe/" target="_blank" class="spotify">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-label="Spotify Profile">
-                    <rect class="bgrd" width="256" height="256" />
-                    <path class="icon"
-                        d="M128,32c-52.99,0-96,43.01-96,96s43.01,96,96,96,96-43.01,96-96-43.01-96-96-96ZM166.98,173.25c-1.63,0-2.63-.5-4.14-1.39-24.15-14.55-52.26-15.17-80.01-9.48-1.51.39-3.48,1.01-4.61,1.01-3.75,0-6.12-2.98-6.12-6.12,0-3.99,2.36-5.88,5.26-6.5,31.7-7.01,64.1-6.39,91.74,10.14,2.36,1.51,3.75,2.86,3.75,6.39s-2.75,5.96-5.88,5.96ZM177.39,147.86c-2.01,0-3.37-.89-4.76-1.63-24.19-14.32-60.27-20.09-92.36-11.38-1.86.5-2.86,1.01-4.61,1.01-4.14,0-7.51-3.37-7.51-7.51s2.01-6.89,6-8.01c10.76-3.02,21.75-5.26,37.86-5.26,25.12,0,49.39,6.23,68.52,17.61,3.14,1.86,4.37,4.26,4.37,7.63-.04,4.18-3.29,7.55-7.51,7.55ZM189.39,118.36c-2.01,0-3.25-.5-4.99-1.51-27.56-16.45-76.84-20.4-108.74-11.5-1.39.39-3.14,1.01-4.99,1.01-5.11,0-9.02-3.99-9.02-9.14s3.25-8.25,6.74-9.25c13.63-3.99,28.88-5.88,45.48-5.88,28.26,0,57.87,5.88,79.51,18.5,3.02,1.74,4.99,4.14,4.99,8.75,0,5.26-4.26,9.02-8.98,9.02Z" />
-                </svg>
-            </a>
-            <a href="https://uk.pinterest.com/willbert033/" target="_blank" class="pinterest">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-label="Pinterest Profile">
-                    <rect class="bgrd" width="256" height="256" />
-                    <path class="icon"
-                        d="M92.36,217.16c-1.2-10.92-.36-21.36,2.04-31.44l9.6-41.4c-1.56-5.04-2.76-10.8-2.76-16.56,0-13.44,6.48-23.04,16.68-23.04,7.08,0,12.24,4.92,12.24,14.4,0,3-.6,6.36-1.8,10.2l-4.2,13.8c-.84,2.64-1.2,5.16-1.2,7.32,0,9.6,7.32,15,16.68,15,16.68,0,28.56-17.28,28.56-39.72,0-24.96-16.32-40.92-40.44-40.92-26.88,0-43.92,17.52-43.92,41.88,0,9.84,3,18.96,8.88,25.2-1.92,3.24-3.96,3.84-7.08,3.84-9.6,0-18.72-13.56-18.72-32.04,0-31.92,25.56-57.36,61.44-57.36,37.68,0,61.32,26.28,61.32,58.68s-23.04,57.12-47.88,57.12c-9.84,0-18.48-4.2-24.48-11.76l-4.92,19.92c-2.64,10.32-6.6,20.04-12.96,29.4,9,2.76,17.88,4.32,28.56,4.32,53.04,0,96-42.96,96-96s-42.96-96-96-96-96,42.96-96,96c0,40.2,24.72,74.88,60.36,89.16" />
-                </svg>
-            </a>
-            <a href="mailto:williamleggett84@gmail.com" class="mail">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-label="Mail Profile">
-                    <rect class="bgrd" width="256" height="256" />
-                    <path class="icon"
-                        d="M223.98,79.3c-.36-15.56-13.13-28.1-28.78-28.1H60.8c-15.65,0-28.42,12.54-28.78,28.1-.01.23-.02.47-.02.7v96c0,15.88,12.92,28.8,28.8,28.8h134.4c15.88,0,28.8-12.92,28.8-28.8v-96c0-.23-.01-.47-.02-.7ZM60.8,70.4h134.4c3.7,0,6.91,2.1,8.52,5.18l-75.72,50.48-75.72-50.48c1.61-3.08,4.82-5.18,8.52-5.18ZM204.8,176c0,5.29-4.31,9.6-9.6,9.6H60.8c-5.29,0-9.6-4.31-9.6-9.6v-78.06l71.48,47.65c1.61,1.07,3.46,1.61,5.32,1.61s3.71-.54,5.32-1.61l71.48-47.65v78.06Z" />
-                </svg>
-            </a>
-            <a href="#" class="button">Close</a>
-        </div>
+      <div class="socials">
+        <a href="https://github.com/willbert03/" target="_blank" class="github">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 256"
+            aria-label="GitHub Profile"
+          >
+            <rect class="bgrd" width="256" height="256" />
+            <path
+              class="icon"
+              d="M128.08,33.6c-53.13,0-96.08,43.27-96.08,96.79,0,42.79,27.52,79,65.7,91.82,4.77.96,6.52-2.08,6.52-4.65,0-2.24-.16-9.94-.16-17.95-26.73,5.77-32.29-11.54-32.29-11.54-4.3-11.22-10.66-14.1-10.66-14.1-8.75-5.93.64-5.93.64-5.93,9.7.64,14.8,9.94,14.8,9.94,8.59,14.74,22.43,10.58,28,8.01.79-6.25,3.34-10.58,6.05-12.98-21.32-2.24-43.74-10.58-43.74-47.76,0-10.58,3.82-19.23,9.86-25.96-.95-2.4-4.3-12.34.96-25.64,0,0,8.11-2.56,26.4,9.94,7.83-2.12,15.91-3.2,24.02-3.21,8.11,0,16.38,1.12,24.02,3.21,18.29-12.5,26.41-9.94,26.41-9.94,5.25,13.3,1.91,23.24.95,25.64,6.2,6.73,9.86,15.38,9.86,25.96,0,37.18-22.43,45.35-43.9,47.76,3.5,3.04,6.52,8.81,6.52,17.95,0,12.98-.16,23.4-.16,26.6,0,2.56,1.75,5.61,6.52,4.65,38.18-12.82,65.7-49.04,65.7-91.83.16-53.53-42.95-96.79-95.92-96.79Z"
+            />
+          </svg>
+        </a>
+        <a
+          href=" https://www.linkedin.com/in/william-leggett/"
+          target="_blank"
+          class="linkedin"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 256"
+            aria-label="LinkedIn Profile"
+          >
+            <rect class="bgrd" width="256" height="256" />
+            <path
+              class="icon"
+              d="M209.82,32H46.19c-7.75-.09-14.1,6.12-14.19,13.87v164.26c.09,7.75,6.44,13.96,14.19,13.87h163.62c7.75.09,14.1-6.12,14.19-13.87V45.87c-.09-7.75-6.44-13.96-14.18-13.87ZM88.96,195.63h-28.48v-91.63h28.48v91.63ZM74.78,91.73c-9.13,0-16.54-7.4-16.54-16.53,0-4.56,1.85-8.7,4.85-11.69,2.99-2.99,7.13-4.84,11.69-4.84,9.13,0,16.53,7.4,16.53,16.53s-7.4,16.53-16.53,16.53ZM195.63,195.63h-28.48v-44.59c0-10.67,0-24.32-14.83-24.32s-17.06,11.57-17.06,23.52v45.33h-28.38v-91.57h27.31v12.53h.37c5.57-9.51,15.92-15.18,26.94-14.77,28.85,0,34.13,18.99,34.13,43.63v50.24Z"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://www.instagram.com/willbert03/"
+          target="_blank"
+          class="instagram"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 256"
+            aria-label="Instagram Profile"
+          >
+            <rect class="bgrd" width="256" height="256" />
+            <path
+              class="icon"
+              d="M88.24,32.67c-10.21.48-17.19,2.11-23.29,4.51-6.31,2.46-11.66,5.76-16.98,11.1-5.32,5.34-8.6,10.69-11.04,17.02-2.36,6.11-3.96,13.09-4.42,23.31-.45,10.22-.55,13.51-.5,39.58.05,26.07.17,29.34.66,39.58.49,10.21,2.11,17.19,4.51,23.29,2.46,6.31,5.76,11.66,11.1,16.98,5.34,5.32,10.69,8.59,17.03,11.04,6.11,2.36,13.09,3.97,23.31,4.42,10.22.45,13.51.55,39.57.5,26.06-.05,29.34-.17,39.58-.65s17.18-2.12,23.28-4.51c6.31-2.47,11.66-5.76,16.98-11.11,5.32-5.35,8.6-10.7,11.04-17.03,2.37-6.11,3.97-13.09,4.42-23.3.45-10.25.55-13.52.5-39.59-.05-26.07-.17-29.33-.65-39.57s-2.11-17.19-4.51-23.29c-2.47-6.31-5.76-11.65-11.1-16.98-5.34-5.33-10.7-8.6-17.02-11.04-6.11-2.36-13.09-3.97-23.31-4.42s-13.51-.55-39.58-.5c-26.07.05-29.34.16-39.58.66M89.36,206.22c-9.36-.41-14.44-1.96-17.83-3.26-4.49-1.73-7.68-3.82-11.06-7.16-3.38-3.34-5.45-6.55-7.2-11.02-1.32-3.39-2.9-8.46-3.34-17.82-.48-10.12-.58-13.15-.63-38.78-.06-25.63.04-28.66.49-38.78.4-9.35,1.96-14.44,3.26-17.83,1.73-4.49,3.81-7.68,7.16-11.05s6.55-5.45,11.03-7.2c3.38-1.32,8.46-2.89,17.82-3.34,10.12-.48,13.16-.58,38.78-.63,25.63-.06,28.67.04,38.8.49,9.35.41,14.44,1.96,17.82,3.26,4.49,1.73,7.68,3.8,11.05,7.16,3.37,3.36,5.45,6.54,7.2,11.03,1.32,3.37,2.89,8.45,3.34,17.81.48,10.12.59,13.16.64,38.78.05,25.62-.04,28.67-.49,38.78-.41,9.36-1.96,14.44-3.26,17.84-1.73,4.48-3.81,7.68-7.16,11.05-3.35,3.37-6.55,5.45-11.03,7.2-3.38,1.32-8.46,2.89-17.81,3.34-10.12.48-13.16.58-38.79.63s-28.66-.05-38.78-.49M167.62,76.69c.01,6.36,5.18,11.51,11.54,11.5,6.36-.01,11.51-5.18,11.5-11.54-.01-6.36-5.18-11.51-11.54-11.5,0,0,0,0,0,0-6.36.01-11.51,5.18-11.5,11.54M78.71,128.1c.05,27.23,22.16,49.25,49.38,49.19,27.22-.05,49.26-22.16,49.2-49.39-.05-27.23-22.17-49.25-49.39-49.2-27.22.05-49.25,22.17-49.2,49.39M96,128.06c-.03-17.67,14.26-32.03,31.94-32.06,17.67-.03,32.03,14.26,32.06,31.94.03,17.67-14.26,32.03-31.94,32.06-17.67.04-32.03-14.26-32.06-31.93h0"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://open.spotify.com/user/m721lyjmo4bhqy922jubq2noe/"
+          target="_blank"
+          class="spotify"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 256"
+            aria-label="Spotify Profile"
+          >
+            <rect class="bgrd" width="256" height="256" />
+            <path
+              class="icon"
+              d="M128,32c-52.99,0-96,43.01-96,96s43.01,96,96,96,96-43.01,96-96-43.01-96-96-96ZM166.98,173.25c-1.63,0-2.63-.5-4.14-1.39-24.15-14.55-52.26-15.17-80.01-9.48-1.51.39-3.48,1.01-4.61,1.01-3.75,0-6.12-2.98-6.12-6.12,0-3.99,2.36-5.88,5.26-6.5,31.7-7.01,64.1-6.39,91.74,10.14,2.36,1.51,3.75,2.86,3.75,6.39s-2.75,5.96-5.88,5.96ZM177.39,147.86c-2.01,0-3.37-.89-4.76-1.63-24.19-14.32-60.27-20.09-92.36-11.38-1.86.5-2.86,1.01-4.61,1.01-4.14,0-7.51-3.37-7.51-7.51s2.01-6.89,6-8.01c10.76-3.02,21.75-5.26,37.86-5.26,25.12,0,49.39,6.23,68.52,17.61,3.14,1.86,4.37,4.26,4.37,7.63-.04,4.18-3.29,7.55-7.51,7.55ZM189.39,118.36c-2.01,0-3.25-.5-4.99-1.51-27.56-16.45-76.84-20.4-108.74-11.5-1.39.39-3.14,1.01-4.99,1.01-5.11,0-9.02-3.99-9.02-9.14s3.25-8.25,6.74-9.25c13.63-3.99,28.88-5.88,45.48-5.88,28.26,0,57.87,5.88,79.51,18.5,3.02,1.74,4.99,4.14,4.99,8.75,0,5.26-4.26,9.02-8.98,9.02Z"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://uk.pinterest.com/willbert033/"
+          target="_blank"
+          class="pinterest"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 256"
+            aria-label="Pinterest Profile"
+          >
+            <rect class="bgrd" width="256" height="256" />
+            <path
+              class="icon"
+              d="M92.36,217.16c-1.2-10.92-.36-21.36,2.04-31.44l9.6-41.4c-1.56-5.04-2.76-10.8-2.76-16.56,0-13.44,6.48-23.04,16.68-23.04,7.08,0,12.24,4.92,12.24,14.4,0,3-.6,6.36-1.8,10.2l-4.2,13.8c-.84,2.64-1.2,5.16-1.2,7.32,0,9.6,7.32,15,16.68,15,16.68,0,28.56-17.28,28.56-39.72,0-24.96-16.32-40.92-40.44-40.92-26.88,0-43.92,17.52-43.92,41.88,0,9.84,3,18.96,8.88,25.2-1.92,3.24-3.96,3.84-7.08,3.84-9.6,0-18.72-13.56-18.72-32.04,0-31.92,25.56-57.36,61.44-57.36,37.68,0,61.32,26.28,61.32,58.68s-23.04,57.12-47.88,57.12c-9.84,0-18.48-4.2-24.48-11.76l-4.92,19.92c-2.64,10.32-6.6,20.04-12.96,29.4,9,2.76,17.88,4.32,28.56,4.32,53.04,0,96-42.96,96-96s-42.96-96-96-96-96,42.96-96,96c0,40.2,24.72,74.88,60.36,89.16"
+            />
+          </svg>
+        </a>
+        <a href="mailto:williamleggett84@gmail.com" class="mail">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 256"
+            aria-label="Mail Profile"
+          >
+            <rect class="bgrd" width="256" height="256" />
+            <path
+              class="icon"
+              d="M223.98,79.3c-.36-15.56-13.13-28.1-28.78-28.1H60.8c-15.65,0-28.42,12.54-28.78,28.1-.01.23-.02.47-.02.7v96c0,15.88,12.92,28.8,28.8,28.8h134.4c15.88,0,28.8-12.92,28.8-28.8v-96c0-.23-.01-.47-.02-.7ZM60.8,70.4h134.4c3.7,0,6.91,2.1,8.52,5.18l-75.72,50.48-75.72-50.48c1.61-3.08,4.82-5.18,8.52-5.18ZM204.8,176c0,5.29-4.31,9.6-9.6,9.6H60.8c-5.29,0-9.6-4.31-9.6-9.6v-78.06l71.48,47.65c1.61,1.07,3.46,1.61,5.32,1.61s3.71-.54,5.32-1.61l71.48-47.65v78.06Z"
+            />
+          </svg>
+        </a>
+        <a href="#" class="button">Close</a>
+      </div>
     </div>
+
+    <script>
+      var option_portfolio = {
+        webgl: true,
+        soundEnable: false,
+        backgroundColor: "#121212",
+        autoEnableOutline: window.innerWidth >= 800,
+        showDownloadControl: false,
+        showSearchControl: false,
+        showPrintControl: false,
+        hideControls: "download,search,print,zoomIn,zoomOut,share,sound",
+        moreControls: "thumbnail,pageMode,fullScreen,startPage,endPage",
+      };
+    </script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="/particles.min.js"></script>
     <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 160,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#eeeeee"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#eeeeee"
-                    },
-                },
-                "opacity": {
-                    "value": .25,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 1,
-                        "opacity_min": 0,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 4,
-                        "size_min": 0.3,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 50,
-                    "color": "#444444",
-                    "opacity": 1,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 1,
-                    "direction": "none",
-                    "random": true,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 600
-                    }
-                }
+      particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 160,
+            density: {
+              enable: true,
+              value_area: 800,
             },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "bubble"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 400,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 250,
-                        "size": 0,
-                        "duration": 2,
-                        "opacity": 0,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 400,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
+          },
+          color: {
+            value: "#eeeeee",
+          },
+          shape: {
+            type: "circle",
+            stroke: {
+              width: 0,
+              color: "#eeeeee",
             },
-            "retina_detect": true
-        });
+          },
+          opacity: {
+            value: 0.25,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 1,
+              opacity_min: 0,
+              sync: false,
+            },
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: {
+              enable: false,
+              speed: 4,
+              size_min: 0.3,
+              sync: false,
+            },
+          },
+          line_linked: {
+            enable: true,
+            distance: 50,
+            color: "#444444",
+            opacity: 1,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+              enable: false,
+              rotateX: 600,
+              rotateY: 600,
+            },
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "bubble",
+            },
+            resize: true,
+          },
+          modes: {
+            grab: {
+              distance: 400,
+              line_linked: {
+                opacity: 1,
+              },
+            },
+            bubble: {
+              distance: 250,
+              size: 0,
+              duration: 2,
+              opacity: 0,
+              speed: 3,
+            },
+            repulse: {
+              distance: 400,
+              duration: 0.4,
+            },
+            push: {
+              particles_nb: 4,
+            },
+            remove: {
+              particles_nb: 2,
+            },
+          },
+        },
+        retina_detect: true,
+      });
     </script>
-</body>
-
-
-
+  </body>
 </html>
