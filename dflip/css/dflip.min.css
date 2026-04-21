@@ -589,7 +589,7 @@ span.df-share-title {
   float: left;
 }
 .df-ui-btn:hover {
-  color: var(--accent);
+  color: #00acce;
 }
 .df-ui-btn.disabled,
 .df-ui-btn.disabled:hover {
@@ -795,7 +795,7 @@ span.df-share-title {
   border-right: 1px solid #ddd;
 }
 .df-ui-btn.df-active {
-  color: var(--accent);
+  color: #00acce;
   background-color: #e7e7e7;
 }
 .df-ui-fit {
