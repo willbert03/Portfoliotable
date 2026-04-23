@@ -1,12 +1,5 @@
-<!-- 
- - add human hello! text; block text, talk about who I am and what this page shows; shakey hover over title to reveal text?
- - better visual identity: logo, font, colour, loading animations
- - fix font
- - pdf viewer button colours, grab cursor (cursor: -webkit-grab; cursor: grab; -> cursor: -webkit-grabbing; cursor: grabbing;) -->
 <!doctype html>
 <html lang="en">
-  <!-- add hyperlinks, upload to github / find way to hide pdfs? = password?? -->
-  <!-- change hover accent for each portfolio?-->
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,6 +21,7 @@
       type="text/css"
     />
     <style>
+      /* Core website design */
       :root {
         --accent: #8888de;
         --text: #eeeeee;
@@ -93,6 +87,7 @@
           transition: all 0.3s ease;
       }
 
+      /* Italic text and underline on hover */
       td div#portfolio {
           display: inline-block;
           position: relative;
@@ -118,7 +113,7 @@
           transform: skewX(-12deg);
       }
 
-
+      /* Switching table layouts (find better way later) */
       .desktop {
           display: table;
           flex: 1;
@@ -127,7 +122,7 @@
       .mobile {
           display: none;
       }
-
+      /* Button to open social media panel */
       .button-wl {
           display: inline-block;
           background-color: var(--grey3);
@@ -150,14 +145,7 @@
           transition: background-position 1s ease, color 0.5s ease;
       }
 
-      .df-ui-btn:hover, .df-ui-btn.df-active, .df-lightbox-close.df-ui-btn.ti-close:hover {
-          color: var(--accent) !important;
-      }
-
-      .df-lightbox-close.df-ui-btn.ti-close, .df-ui-btn.df-ui-next {
-          color: #dadada !important;
-      }
-
+      /* Social media panel */
       #socials {
           opacity: 0;
           visibility: hidden;
@@ -247,48 +235,74 @@
           z-index: -1;
       }
 
+      /* dflip specific changes */
+      .df-ui-btn:hover, .df-ui-btn.df-active, .df-lightbox-close.df-ui-btn.ti-close:hover {
+          color: var(--accent) !important;
+      }
+
+      .df-lightbox-close.df-ui-btn.ti-close, .df-ui-btn.df-ui-next {
+          color: #dadada !important;
+      }
+
+      .df-container.df-loading:after,
+      .df-page-loading.df-page-loading:after,
+      .df-thumb-container .df-vrow:before {
+        background-image: url("/SVG/loading.svg") !important;
+        animation: spin 1s linear infinite;
+        transform-origin: center;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Responsive design for mobile devices */
       @media (max-width: 800px) {
-          body {
-              background-color: var(--grey2);
-          }
+        body {
+            background-color: var(--grey2);
+        }
 
-          .desktop {
-              display: none;
-          }
+        .desktop {
+            display: none;
+        }
 
-          .mobile {
-              display: table;
-              flex: 1;
-          }
+        .mobile {
+            display: table;
+            flex: 1;
+        }
 
-          .container {
-              margin: 0 auto;
-              padding: 0px;
-              width: 100%;
-              background-color: transparent;
-              padding: 0px;
-              box-shadow: none;
-              border-radius: 0px;
-              border: none;
-          }
+        .container {
+            margin: 0 auto;
+            padding: 0px;
+            width: 100%;
+            background-color: transparent;
+            padding: 0px;
+            box-shadow: none;
+            border-radius: 0px;
+            border: none;
+        }
 
-          #particles-js, td div#portfolio::after {
-              display: none;
-          }
+        #particles-js, td div#portfolio::after {
+            display: none;
+        }
 
-          td:hover div#portfolio {
-              font-style: italic;
-              transform: skewX(0deg);
-          }
+        td:hover div#portfolio {
+            font-style: italic;
+            transform: skewX(0deg);
+        }
 
 
-          .socials {
-              grid-template-columns: repeat(2, 1fr);
-          }
+        .socials {
+            grid-template-columns: repeat(2, 1fr);
+        }
 
-          #socials .button-close {
-            grid-column: span 2;
-          }
+        #socials .button-close {
+          grid-column: span 2;
+        }
     </style>
   </head>
   <body>
